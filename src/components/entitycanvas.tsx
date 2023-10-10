@@ -11,13 +11,24 @@ const entityBaseStyle = {
   padding: 20,
 };
 
+const canvasBaseStyle: React.CSSProperties = {
+  position: "relative",
+  width: "800px",
+  height: "600px",
+  backgroundColor: "#f4f4f4",
+  border: "1px solid #ddd",
+  borderRadius: "4px",
+  overflow: "hidden",
+  margin: "20px 0",
+};
+
 export const EntityCanvas = observer(() => {
   const entityStore = useContext(EntitiesContext);
 
   return (
-    <div>
+    <div style={canvasBaseStyle}>
       {entityStore.entities.map((entity) => (
-        <Entity entity={entity} />
+        <Entity key={entity.id} entity={entity} />
       ))}
     </div>
   );
