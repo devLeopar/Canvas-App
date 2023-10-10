@@ -1,5 +1,7 @@
 import { observable, action, computed, autorun, makeObservable } from "mobx";
 import { EntityObject } from "../types";
+import mergeEntitiesWithCoords from "../utils/mergeEntitiesWithCoords";
+import { fetchCoords, fetchEntities } from "../services/entityService";
 
 const hasLocalStorage = typeof window !== "undefined" && window.localStorage;
 
@@ -37,6 +39,14 @@ export class EntityStore {
       asJson: computed,
     });
     autorun(this.saveToLocalStorageReaction, { delay: 200 });
+  }
+
+  async fetchData() {
+    const entities = await fetchEntities();
+    const coords = await fetchCoords();
+
+    const mergedData = mergeEntitiesWithCoords(entities, coords);
+    this.loadJson(mergedData);
   }
 
   loadJson(json: EntityObject[]) {
