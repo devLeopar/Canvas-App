@@ -1,13 +1,7 @@
 import { observable, action, computed, autorun, makeObservable } from "mobx";
+import { EntityObject } from "../types";
 
 const hasLocalStorage = typeof window !== "undefined" && window.localStorage;
-
-type EntityObject = {
-  id?: number;
-  name: string;
-  x: number;
-  y: number;
-};
 
 export class Entity {
   id = Math.random();

@@ -1,17 +1,20 @@
-const BASE_URL = "http://localhost:8080/static";
+import { Coords, Entity } from "../types";
 
-export const fetchEntities = async () => {
-  const response = await fetch(`${BASE_URL}/entities.json`);
+const ENTITY_API = "/static/entities.json";
+const COORDS_API = "/static/coords.json";
+
+export const fetchEntities = async (): Promise<Entity[]> => {
+  const response = await fetch(ENTITY_API);
   if (!response.ok) {
-    throw new Error("Failed to fetch entities");
+    throw new Error(`Failed to fetch entities: ${response.statusText}`);
   }
   return await response.json();
 };
 
-export const fetchCoords = async () => {
-  const response = await fetch(`${BASE_URL}/coords.json`);
+export const fetchCoords = async (): Promise<Coords[]> => {
+  const response = await fetch(COORDS_API);
   if (!response.ok) {
-    throw new Error("Failed to fetch coordinates");
+    throw new Error(`Failed to fetch coords: ${response.statusText}`);
   }
   return await response.json();
 };
