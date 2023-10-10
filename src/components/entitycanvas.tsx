@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { observer } from "mobx-react";
 import { Entity as EntityData, EntityStore } from "../stores/entitystore";
 import { EntitiesContext } from "../index";
@@ -18,12 +18,19 @@ const canvasBaseStyle: React.CSSProperties = {
   backgroundColor: "#f4f4f4",
   border: "1px solid #ddd",
   borderRadius: "4px",
-  overflow: "hidden",
+  // overflow: "hidden", TODO: when finding a way to add entities into canvas this should be re-activated.
   margin: "20px 0",
 };
 
 export const EntityCanvas = observer(() => {
   const entityStore = useContext(EntitiesContext);
+
+  useEffect(() => {
+    // Fetch data whenever EntityCanvas is mounted or updated
+    entityStore.fetchData().catch((error) => {
+      console.error(`Failed to fetch entities: ${error.message}`);
+    });
+  }, [entityStore]);
 
   return (
     <div style={canvasBaseStyle}>
