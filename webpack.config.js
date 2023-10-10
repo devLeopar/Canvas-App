@@ -20,10 +20,22 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: "Development",
+      template: 'index.html'
     }),
   ],
   output: {
     filename: "bundle.js",
-    publicPath: "/static/",
+    publicPath: "/",
   },
+  devServer: {
+    static: {
+      directory: path.join(__dirname),
+      watch: true
+    },
+    historyApiFallback: {
+      rewrites: [
+        { from: /^\/$/, to: '/index.html' }
+      ]
+    }
+  }
 };
