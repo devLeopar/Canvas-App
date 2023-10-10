@@ -1,9 +1,9 @@
-export type Entity = {
+export type EntityData = {
   id: number;
   name: string;
 };
 
-export type Coords = {
+export type CoordsData = {
   id: number;
   x: number;
   y: number;

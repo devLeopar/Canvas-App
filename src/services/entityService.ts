@@ -1,9 +1,9 @@
-import { Coords, Entity } from "../types";
+import { CoordsData, EntityData } from "../types";
 
 const ENTITY_API = "/static/entities.json";
 const COORDS_API = "/static/coords.json";
 
-export const fetchEntities = async (): Promise<Entity[]> => {
+export const fetchEntities = async (): Promise<EntityData[]> => {
   const response = await fetch(ENTITY_API);
   if (!response.ok) {
     throw new Error(`Failed to fetch entities: ${response.statusText}`);
@@ -11,7 +11,7 @@ export const fetchEntities = async (): Promise<Entity[]> => {
   return await response.json();
 };
 
-export const fetchCoords = async (): Promise<Coords[]> => {
+export const fetchCoords = async (): Promise<CoordsData[]> => {
   const response = await fetch(COORDS_API);
   if (!response.ok) {
     throw new Error(`Failed to fetch coords: ${response.statusText}`);
