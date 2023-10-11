@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { EntityObject } from "../types";
 import { observer } from "mobx-react";
 
@@ -24,30 +24,35 @@ const DraggableEntity = observer(({ entity, onDrop }: DraggableEntityProps) => {
     lastMousePosition.current = { x: e.clientX, y: e.clientY };
   };
 
-  const handleMouseUp = () => {
-    setIsDragging(false);
-    // Update the global position here or call a passed-in callback
-    onDrop(entity.x, entity.y);
-  };
+  useEffect(() => {
+    const handleGlobalMouseUp = () => {
+      setIsDragging(false);
+    };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging) return;
+    const handleGlobalMouseMove = (e: MouseEvent) => {
+      if (!isDragging) return;
 
-    const dx = e.clientX - lastMousePosition.current.x;
-    const dy = e.clientY - lastMousePosition.current.y;
+      const dx = e.clientX - lastMousePosition.current.x;
+      const dy = e.clientY - lastMousePosition.current.y;
 
-    // Update the local entity's position here
-    entity.x += dx;
-    entity.y += dy;
+      entity.x += dx;
+      entity.y += dy;
 
-    lastMousePosition.current = { x: e.clientX, y: e.clientY };
-  };
+      lastMousePosition.current = { x: e.clientX, y: e.clientY };
+    };
+
+    window.addEventListener("mousemove", handleGlobalMouseMove);
+    window.addEventListener("mouseup", handleGlobalMouseUp);
+
+    return () => {
+      window.removeEventListener("mousemove", handleGlobalMouseMove);
+      window.removeEventListener("mouseup", handleGlobalMouseUp);
+    };
+  }, [isDragging, entity]);
 
   return (
     <div
       onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      onMouseMove={handleMouseMove}
       style={Object.assign({}, entityBaseStyle, {
         cursor: isDragging ? "grabbing" : "grab",
         left: entity.x,
