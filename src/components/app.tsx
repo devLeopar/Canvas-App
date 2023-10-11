@@ -14,12 +14,14 @@ export const App = observer(() => {
     const entityWidth = 142; // entity width including padding,margin
     const entityHeight = 70; // entity height including padding,margin
 
-    if (entityName) {
+    if (entityName && entityName.length <= 10) {
       entityStore.addEntity(
         entityName,
         Math.floor(Math.random() * (canvasWidth - entityWidth)),
         Math.floor(Math.random() * (canvasHeight - entityHeight))
       );
+    } else if (entityName && entityName.length > 10) {
+      alert("Entity name length should be a maximum of 10 characters.");
     }
   };
   return (

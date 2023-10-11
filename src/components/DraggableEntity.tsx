@@ -28,7 +28,7 @@ const DraggableEntity = observer(({ entity, onDrop }: DraggableEntityProps) => {
 
   const handleDoubleClick = () => {
     const newAttribute = prompt(`Add a new attribute to ${entity.name}:`, "");
-    if (newAttribute) {
+    if (newAttribute && newAttribute.length <= 10) {
       // Limit the number of the attributes an entity can have
       if (entity.attributes.length >= 5) {
         alert("Maximum number of attributes reached!");
@@ -38,6 +38,8 @@ const DraggableEntity = observer(({ entity, onDrop }: DraggableEntityProps) => {
       runInAction(() => {
         entity.attributes.push(newAttribute);
       });
+    } else if (newAttribute && newAttribute.length > 10) {
+      alert("Attribute name length should be a maximum of 10 characters.");
     }
   };
 
