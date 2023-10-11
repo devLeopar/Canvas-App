@@ -33,9 +33,8 @@ const DraggableEntity = observer(({ entity, onDrop }: DraggableEntityProps) => {
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDragging) return;
 
-    console.log(lastMousePosition.current)
-    const dx = e.clientY - lastMousePosition.current.y;
-    const dy = e.clientX - lastMousePosition.current.x;
+    const dx = e.clientX - lastMousePosition.current.x;
+    const dy = e.clientY - lastMousePosition.current.y;
 
     // Update the local entity's position here
     entity.x += dx;
@@ -51,8 +50,8 @@ const DraggableEntity = observer(({ entity, onDrop }: DraggableEntityProps) => {
       onMouseMove={handleMouseMove}
       style={Object.assign({}, entityBaseStyle, {
         cursor: isDragging ? "grabbing" : "grab",
-        left: entity.y,
-        top: entity.x,
+        left: entity.x,
+        top: entity.y,
       })}
     >
       {entity.name}
