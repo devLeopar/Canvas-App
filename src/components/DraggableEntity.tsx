@@ -27,7 +27,7 @@ const DraggableEntity = observer(({ entity, onDrop }: DraggableEntityProps) => {
   };
 
   const handleDoubleClick = () => {
-    const newAttribute = prompt("Add a new attribute:", "");
+    const newAttribute = prompt(`Add a new attribute to ${entity.name}:`, "");
     if (newAttribute) {
       // Limit the number of the attributes an entity can have
       if (entity.attributes.length >= 5) {
