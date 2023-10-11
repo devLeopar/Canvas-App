@@ -26,6 +26,21 @@ const DraggableEntity = observer(({ entity, onDrop }: DraggableEntityProps) => {
     lastMousePosition.current = { x: e.clientX, y: e.clientY };
   };
 
+  const handleDoubleClick = () => {
+    const newAttribute = prompt("Add a new attribute:", "");
+    if (newAttribute) {
+      // Limit the number of the attributes an entity can have
+      if (entity.attributes.length >= 5) {
+        alert("Maximum number of attributes reached!");
+        return;
+      }
+
+      runInAction(() => {
+        entity.attributes.push(newAttribute);
+      });
+    }
+  };
+
   useEffect(() => {
     const handleGlobalMouseUp = () => {
       setIsDragging(false);
@@ -76,6 +91,7 @@ const DraggableEntity = observer(({ entity, onDrop }: DraggableEntityProps) => {
 
   return (
     <div
+      onDoubleClick={handleDoubleClick}
       onMouseDown={handleMouseDown}
       style={Object.assign({}, entityBaseStyle, {
         cursor: isDragging ? "grabbing" : "grab",
@@ -84,6 +100,9 @@ const DraggableEntity = observer(({ entity, onDrop }: DraggableEntityProps) => {
       })}
     >
       {entity.name}
+      {entity.attributes.map((attribute) => (
+        <div key={attribute}>{attribute}</div>
+      ))}
     </div>
   );
 });
