@@ -1,8 +1,8 @@
-import { CoordsData, EntityData, EntityObject } from "../types";
+import { ApiEntityData, CoordsData, EntityObject } from "../types";
 
 // Merges entities with coordinates based on the ID
 const mergeEntitiesWithCoords = (
-  entities: EntityData[],
+  entities: ApiEntityData[],
   coords: CoordsData[]
 ): EntityObject[] => {
   return entities.map((entity) => {
@@ -11,6 +11,7 @@ const mergeEntitiesWithCoords = (
       ...entity,
       x: coord?.x || 0,
       y: coord?.y || 0,
+      attributes: [],
     };
   });
 };

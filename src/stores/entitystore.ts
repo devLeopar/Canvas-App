@@ -10,25 +10,28 @@ export class Entity {
   name = "Entity";
   x = 0;
   y = 0;
+  attributes: string[] = [];
 
   constructor(json: EntityObject) {
     makeObservable(this, {
       name: observable,
       x: observable,
       y: observable,
+      attributes: observable,
       asJson: computed,
     });
     Object.assign(this, json);
   }
 
   get asJson() {
-    const { id, name, x, y } = this;
-    return { id, name, x, y };
+    const { id, name, x, y, attributes } = this;
+    return { id, name, x, y, attributes };
   }
 }
 
 export class EntityStore {
   entities: Entity[] = [];
+  attributes: string[] = [];
 
   constructor() {
     makeObservable(this, {
@@ -67,6 +70,7 @@ export class EntityStore {
         name,
         x,
         y,
+        attributes: [],
       })
     );
   }

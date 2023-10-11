@@ -9,12 +9,14 @@ describe("Entity store", () => {
         name: "test1",
         x: 100,
         y: 100,
+        attributes: ["james"],
       },
       {
         id: 2,
         name: "test2",
         x: 200,
         y: 200,
+        attributes: ["jessica"],
       },
     ]);
 

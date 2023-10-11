@@ -1,7 +1,13 @@
-export type EntityData = {
+export type ApiEntityData = {
   id: number;
   name: string;
 };
+
+export type UserEntityData = {
+  attributes: string[];
+};
+
+export type EntityData = ApiEntityData & UserEntityData;
 
 export type CoordsData = {
   id: number;
@@ -14,4 +20,5 @@ export type EntityObject = {
   name: string;
   x: number;
   y: number;
+  attributes: string[];
 };
