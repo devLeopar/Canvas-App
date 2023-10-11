@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { EntityObject } from "../types";
 import { observer } from "mobx-react";
+import { runInAction } from "mobx";
 
 const entityBaseStyle = {
   position: "absolute" as const,
@@ -35,8 +36,10 @@ const DraggableEntity = observer(({ entity, onDrop }: DraggableEntityProps) => {
       const dx = e.clientX - lastMousePosition.current.x;
       const dy = e.clientY - lastMousePosition.current.y;
 
-      entity.x += dx;
-      entity.y += dy;
+      runInAction(() => {
+        entity.x += dx;
+        entity.y += dy;
+      });
 
       lastMousePosition.current = { x: e.clientX, y: e.clientY };
     };
