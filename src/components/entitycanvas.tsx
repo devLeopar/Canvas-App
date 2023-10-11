@@ -4,14 +4,6 @@ import { Entity as EntityData, EntityStore } from "../stores/entitystore";
 import { EntitiesContext } from "../index";
 import DraggableEntity from "./DraggableEntity";
 
-const entityBaseStyle = {
-  position: "absolute" as const,
-  width: 100,
-  border: "1px solid cornflowerblue",
-  borderRadius: 4,
-  padding: 20,
-};
-
 const canvasBaseStyle: React.CSSProperties = {
   position: "relative",
   width: "800px",
@@ -40,27 +32,8 @@ export const EntityCanvas = observer(() => {
   return (
     <div style={canvasBaseStyle}>
       {entityStore.entities.map((entity) => (
-        <DraggableEntity
-          key={entity.id}
-          entity={entity}
-          onDrop={(x, y) => handleDrop(entity.id, x, y)}
-        />
+        <DraggableEntity key={entity.id} entity={entity} />
       ))}
     </div>
   );
 });
-
-type EntityProps = {
-  entity: EntityData;
-};
-
-const Entity = observer((props: EntityProps) => (
-  <div
-    style={Object.assign({}, entityBaseStyle, {
-      left: props.entity.y,
-      top: props.entity.x,
-    })}
-  >
-    {props.entity.name}
-  </div>
-));

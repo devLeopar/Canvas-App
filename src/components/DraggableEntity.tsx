@@ -14,10 +14,9 @@ const entityBaseStyle = {
 
 type DraggableEntityProps = {
   entity: EntityObject;
-  onDrop: (x: number, y: number) => void; // Callback for when entity is dropped
 };
 
-const DraggableEntity = observer(({ entity, onDrop }: DraggableEntityProps) => {
+const DraggableEntity = observer(({ entity }: DraggableEntityProps) => {
   const [isDragging, setIsDragging] = useState(false);
   const lastMousePosition = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 
