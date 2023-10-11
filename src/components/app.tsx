@@ -8,11 +8,17 @@ export const App = observer(() => {
 
   const onAddEntity = () => {
     const entityName = prompt("Name of the new entity", "");
+
+    const canvasWidth = 800;
+    const canvasHeight = 600;
+    const entityWidth = 100; // approximate width of the entity
+    const entityHeight = 100; // approximate height of the entity
+
     if (entityName) {
       entityStore.addEntity(
         entityName,
-        Math.random() * 1000,
-        Math.random() * 1000
+        Math.random() * (canvasHeight - entityHeight),
+        Math.random() * (canvasWidth - entityWidth)
       );
     }
   };
