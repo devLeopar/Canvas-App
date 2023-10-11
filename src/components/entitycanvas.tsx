@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { observer } from "mobx-react";
 import { Entity as EntityData, EntityStore } from "../stores/entitystore";
 import { EntitiesContext } from "../index";
+import DraggableEntity from "./DraggableEntity";
 
 const entityBaseStyle = {
   position: "absolute" as const,
@@ -32,10 +33,18 @@ export const EntityCanvas = observer(() => {
     });
   }, [entityStore]);
 
+  const handleDrop = (entityId: number, x: number, y: number) => {
+    entityStore.updatePosition(entityId, x, y);
+  };
+
   return (
     <div style={canvasBaseStyle}>
       {entityStore.entities.map((entity) => (
-        <Entity key={entity.id} entity={entity} />
+        <DraggableEntity
+          key={entity.id}
+          entity={entity}
+          onDrop={(x, y) => handleDrop(entity.id, x, y)}
+        />
       ))}
     </div>
   );
