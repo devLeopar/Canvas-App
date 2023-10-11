@@ -17,8 +17,8 @@ export const App = observer(() => {
     if (entityName) {
       entityStore.addEntity(
         entityName,
-        Math.random() * (canvasWidth - entityWidth),
-        Math.random() * (canvasHeight - entityHeight)
+        Math.floor(Math.random() * (canvasWidth - entityWidth)),
+        Math.floor(Math.random() * (canvasHeight - entityHeight))
       );
     }
   };
