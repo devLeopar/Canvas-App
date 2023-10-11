@@ -6,6 +6,7 @@ import { runInAction } from "mobx";
 const entityBaseStyle = {
   position: "absolute" as const,
   width: 100,
+  height: 30,
   border: "1px solid cornflowerblue",
   borderRadius: 4,
   padding: 20,
@@ -36,9 +37,29 @@ const DraggableEntity = observer(({ entity, onDrop }: DraggableEntityProps) => {
       const dx = e.clientX - lastMousePosition.current.x;
       const dy = e.clientY - lastMousePosition.current.y;
 
+      // Calculate new positions
+      let newX = entity.x + dx;
+      let newY = entity.y + dy;
+
+      // Check boundaries for x
+      if (newX < 0) {
+        newX = 0;
+      } else if (newX + 142 > 800) {
+        // 142 is the entity width including padding,border,margin, 800 is canvas width
+        newX = 800 - 142;
+      }
+
+      // Check boundaries for y
+      if (newY < 0) {
+        newY = 0;
+      } else if (newY + 70 > 600) {
+        // 70 is the entity height including padding,border,margin, 600 is canvas height
+        newY = 600 - 70;
+      }
+
       runInAction(() => {
-        entity.x += dx;
-        entity.y += dy;
+        entity.x = newX;
+        entity.y = newY;
       });
 
       lastMousePosition.current = { x: e.clientX, y: e.clientY };
