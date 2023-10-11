@@ -25,10 +25,6 @@ export const EntityCanvas = observer(() => {
     });
   }, [entityStore]);
 
-  const handleDrop = (entityId: number, x: number, y: number) => {
-    entityStore.updatePosition(entityId, x, y);
-  };
-
   return (
     <div style={canvasBaseStyle}>
       {entityStore.entities.map((entity) => (

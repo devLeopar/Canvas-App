@@ -52,14 +52,6 @@ export class EntityStore {
     this.loadJson(mergedData);
   }
 
-  updatePosition(entityId: number, x: number, y: number) {
-    const entity = this.entities.find((e) => e.id === entityId);
-    if (entity) {
-      entity.x = x;
-      entity.y = y;
-    }
-  }
-
   loadJson(json: EntityObject[]) {
     this.entities = json.map((entityData) => new Entity(entityData));
   }
