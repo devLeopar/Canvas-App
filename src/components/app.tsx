@@ -11,8 +11,8 @@ export const App = observer(() => {
 
     const canvasWidth = 800;
     const canvasHeight = 600;
-    const entityWidth = 100; // approximate width of the entity
-    const entityHeight = 100; // approximate height of the entity
+    const entityWidth = 140; // approximate width of the entity
+    const entityHeight = 50; // approximate height of the entity
 
     if (entityName) {
       entityStore.addEntity(
