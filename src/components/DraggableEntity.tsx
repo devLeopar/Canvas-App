@@ -5,11 +5,31 @@ import { runInAction } from "mobx";
 
 const entityBaseStyle = {
   position: "absolute" as const,
-  width: 100,
-  height: 30,
-  border: "1px solid cornflowerblue",
+  display: "flex",
+  flexDirection: "column" as const,
+  justifyContent: "center",
+  alignItems: "center",
+  width: 120, // A bit wider
+  minWidth: 120, // Ensures that it doesn't shrink beyond this point
+  backgroundColor: "#f7f8fa", // A subtle background color
+  border: "1px solid #cfd7df", // A softer border color
   borderRadius: 4,
-  padding: 20,
+  padding: "10px 20px", // A bit of padding to space things out
+  boxSizing: "border-box" as const, // Ensures padding doesn't add up to width
+};
+
+const titleStyle = {
+  margin: "0 0 10px 0",
+  fontSize: "1.2em",
+  borderBottom: "1px solid #cfd7df",
+  paddingBottom: "5px",
+};
+
+const attributeStyle = {
+  fontSize: "1em",
+  listStyleType: "none",
+  padding: 0,
+  margin: 0,
 };
 
 type DraggableEntityProps = {
@@ -94,16 +114,19 @@ const DraggableEntity = observer(({ entity }: DraggableEntityProps) => {
     <div
       onDoubleClick={handleDoubleClick}
       onMouseDown={handleMouseDown}
-      style={Object.assign({}, entityBaseStyle, {
-        cursor: isDragging ? "grabbing" : "grab",
+      style={{
+        ...entityBaseStyle,
         left: entity.x,
         top: entity.y,
-      })}
+        cursor: isDragging ? "grabbing" : "grab",
+      }}
     >
-      {entity.name}
-      {entity.attributes.map((attribute) => (
-        <div key={attribute}>{attribute}</div>
-      ))}
+      <h2 style={titleStyle}>{entity.name}</h2>
+      <ul style={attributeStyle}>
+        {entity.attributes.map((attribute) => (
+          <li key={attribute}>{attribute}</li>
+        ))}
+      </ul>
     </div>
   );
 });
