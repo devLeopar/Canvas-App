@@ -28,6 +28,10 @@ export const App = observer(() => {
     <div>
       <h1>Domain Model Editor</h1>
       <button onClick={onAddEntity}>Add Entity</button>
+      <p style={{ marginTop: "10px", fontSize: "14px" }}>
+        ℹ️ Double-click an entity to add an attribute. Max length: 10 chars. Max
+        attributes per entity: 5
+      </p>
       <EntityCanvas />
     </div>
   );
