@@ -58,7 +58,39 @@ const DraggableEntity = observer(({ entity }: DraggableEntityProps) => {
     }
   }, [entity.attributes.length]); // Trigger when the number of attributes changes
 
-  const handleDoubleClick = () => {
+  // Update its position in edge boundry if its size is changed
+  useEffect(() => {
+    // There is no actual movement so it is going to update its position with updated height and width
+    adjustPositionToBounds(0, 0);
+  }, [entitySize]);
+
+  const adjustPositionToBounds = (dx: number, dy: number) => {
+    let newX = entity.x + dx;
+    let newY = entity.y + dy;
+
+    // Check boundaries for x
+    if (newX < 0) {
+      newX = 0;
+    } else if (newX + entitySize.width > 800) {
+      newX = 800 - entitySize.width;
+    }
+
+    // Check boundaries for y
+    if (newY < 0) {
+      newY = 0;
+    } else if (newY + entitySize.height > 600) {
+      newY = 600 - entitySize.height;
+    }
+
+    runInAction(() => {
+      entity.x = newX;
+      entity.y = newY;
+    });
+  };
+
+  const handleDoubleClick = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
     const newAttribute = prompt(`Add a new attribute to ${entity.name}:`, "");
     if (newAttribute && newAttribute.length <= 10) {
       // Limit the number of the attributes an entity can have
@@ -86,28 +118,7 @@ const DraggableEntity = observer(({ entity }: DraggableEntityProps) => {
       const dx = e.clientX - lastMousePosition.current.x;
       const dy = e.clientY - lastMousePosition.current.y;
 
-      // Calculate new positions
-      let newX = entity.x + dx;
-      let newY = entity.y + dy;
-
-      // Check boundaries for x
-      if (newX < 0) {
-        newX = 0;
-      } else if (newX + entitySize.width > 800) {
-        newX = 800 - entitySize.width;
-      }
-
-      // Check boundaries for y
-      if (newY < 0) {
-        newY = 0;
-      } else if (newY + entitySize.height > 600) {
-        newY = 600 - entitySize.height;
-      }
-
-      runInAction(() => {
-        entity.x = newX;
-        entity.y = newY;
-      });
+      adjustPositionToBounds(dx, dy);
 
       lastMousePosition.current = { x: e.clientX, y: e.clientY };
     };
