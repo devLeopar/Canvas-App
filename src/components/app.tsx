@@ -3,6 +3,11 @@ import { observer } from "mobx-react";
 import { EntityCanvas } from "./entitycanvas";
 import { EntitiesContext } from "../index";
 
+const explanatoryTextStyle = {
+  marginTop: "10px",
+  fontSize: "14px",
+};
+
 export const App = observer(() => {
   const entityStore = useContext(EntitiesContext);
 
@@ -28,9 +33,10 @@ export const App = observer(() => {
     <div>
       <h1>Domain Model Editor</h1>
       <button onClick={onAddEntity}>Add Entity</button>
-      <p style={{ marginTop: "10px", fontSize: "14px" }}>
-        ℹ️ Double-click an entity to add an attribute. Max length: 10 chars. Max
-        attributes per entity: 5
+      <p style={explanatoryTextStyle}>
+        ℹ️ Tip: To add attributes, double-click on an entity. Keep attributes
+        short and sweet – no more than 10 characters. You can add up to 5
+        attributes for each entity.
       </p>
       <EntityCanvas />
     </div>
