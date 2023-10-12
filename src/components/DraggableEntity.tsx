@@ -146,8 +146,8 @@ const DraggableEntity = observer(({ entity }: DraggableEntityProps) => {
     >
       <h2 style={titleStyle}>{entity.name}</h2>
       <ul style={attributeStyle}>
-        {entity.attributes.map((attribute) => (
-          <li key={attribute}>{attribute}</li>
+        {entity.attributes.map((attribute, i) => (
+          <li key={i}>{attribute}</li>
         ))}
       </ul>
     </div>
