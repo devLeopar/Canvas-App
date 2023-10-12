@@ -11,7 +11,7 @@ export const App = observer(() => {
 
     const canvasWidth = 800; // canvas width without padding,margin
     const canvasHeight = 600; // canvas height without padding,margin
-    const entityWidth = 142; // entity width including padding,margin
+    const entityWidth = 120; // entity width including padding,margin
     const entityHeight = 70; // entity height including padding,margin
 
     if (entityName && entityName.length <= 10) {
