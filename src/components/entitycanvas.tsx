@@ -11,7 +11,6 @@ const canvasBaseStyle: React.CSSProperties = {
   backgroundColor: "#f4f4f4",
   border: "1px solid #ddd",
   borderRadius: "4px",
-  // overflow: "hidden", TODO: when finding a way to add entities into canvas this should be re-activated.
   margin: "20px 0",
 };
 

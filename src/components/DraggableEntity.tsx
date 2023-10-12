@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
 import { EntityObject } from "../types";
 import { observer } from "mobx-react";
 import { runInAction } from "mobx";
@@ -9,13 +9,14 @@ const entityBaseStyle = {
   flexDirection: "column" as const,
   justifyContent: "center",
   alignItems: "center",
-  width: 120, // A bit wider
-  minWidth: 120, // Ensures that it doesn't shrink beyond this point
-  backgroundColor: "#f7f8fa", // A subtle background color
-  border: "1px solid #cfd7df", // A softer border color
+  width: 120,
+  minWidth: 120,
+  minHeight: 70,
+  backgroundColor: "#f7f8fa",
+  border: "1px solid #cfd7df",
   borderRadius: 4,
-  padding: "10px 20px", // A bit of padding to space things out
-  boxSizing: "border-box" as const, // Ensures padding doesn't add up to width
+  padding: "10px 20px",
+  boxSizing: "border-box" as const,
 };
 
 const titleStyle = {
@@ -40,10 +41,22 @@ const DraggableEntity = observer(({ entity }: DraggableEntityProps) => {
   const [isDragging, setIsDragging] = useState(false);
   const lastMousePosition = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 
+  const [entitySize, setEntitySize] = useState({ width: 120, height: 70 }); // Initial dimensions
+  const entityRef = useRef<HTMLDivElement | null>(null);
+
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true);
     lastMousePosition.current = { x: e.clientX, y: e.clientY };
   };
+
+  useLayoutEffect(() => {
+    if (entityRef.current) {
+      setEntitySize({
+        width: entityRef.current.offsetWidth,
+        height: entityRef.current.offsetHeight,
+      });
+    }
+  }, [entity.attributes.length]); // Trigger when the number of attributes changes
 
   const handleDoubleClick = () => {
     const newAttribute = prompt(`Add a new attribute to ${entity.name}:`, "");
@@ -80,17 +93,15 @@ const DraggableEntity = observer(({ entity }: DraggableEntityProps) => {
       // Check boundaries for x
       if (newX < 0) {
         newX = 0;
-      } else if (newX + 142 > 800) {
-        // 142 is the entity width including padding,border,margin, 800 is canvas width
-        newX = 800 - 142;
+      } else if (newX + entitySize.width > 800) {
+        newX = 800 - entitySize.width;
       }
 
       // Check boundaries for y
       if (newY < 0) {
         newY = 0;
-      } else if (newY + 70 > 600) {
-        // 70 is the entity height including padding,border,margin, 600 is canvas height
-        newY = 600 - 70;
+      } else if (newY + entitySize.height > 600) {
+        newY = 600 - entitySize.height;
       }
 
       runInAction(() => {
@@ -112,6 +123,7 @@ const DraggableEntity = observer(({ entity }: DraggableEntityProps) => {
 
   return (
     <div
+      ref={entityRef}
       onDoubleClick={handleDoubleClick}
       onMouseDown={handleMouseDown}
       style={{
