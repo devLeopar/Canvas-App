@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<EntityCanvas /> renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    style="position: relative; width: 800px; height: 600px; background-color: rgb(244, 244, 244); border: 1px solid #ddd; border-radius: 4px; margin: 20px 0px;"
+  />
+</DocumentFragment>
+`;

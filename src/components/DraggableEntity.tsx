@@ -134,6 +134,7 @@ const DraggableEntity = observer(({ entity }: DraggableEntityProps) => {
 
   return (
     <div
+      data-testid="draggable-entity"
       ref={entityRef}
       onDoubleClick={handleDoubleClick}
       onMouseDown={handleMouseDown}
