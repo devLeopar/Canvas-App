@@ -3,7 +3,7 @@ import { render, waitFor } from "@testing-library/react";
 import App from "../components/app";
 import { EntitiesContext } from "../stores/EntitiesContext";
 import { EntityStore } from "../stores/entitystore";
-import { setupFetchMock } from "./__mocks__/fetchMocks";
+import { setupFetchMock } from "../__mocks__/fetchMocks";
 import { fireEvent } from "@testing-library/react";
 
 beforeEach(() => {
