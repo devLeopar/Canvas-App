@@ -1,4 +1,4 @@
-import { EntityStore } from "../entitystore";
+import { EntityStore } from "../stores/entitystore";
 
 describe("Entity store", () => {
   it("should load entities from json", () => {
