@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { observer } from "mobx-react";
 import { Entity as EntityData, EntityStore } from "../stores/entitystore";
-import { EntitiesContext } from "../index";
 import DraggableEntity from "./DraggableEntity";
+import { EntitiesContext } from "../stores/EntitiesContext";
 
 const canvasBaseStyle: React.CSSProperties = {
   position: "relative",
@@ -14,7 +14,7 @@ const canvasBaseStyle: React.CSSProperties = {
   margin: "20px 0",
 };
 
-export const EntityCanvas = observer(() => {
+const EntityCanvas = observer(() => {
   const entityStore = useContext(EntitiesContext);
 
   useEffect(() => {
@@ -32,3 +32,5 @@ export const EntityCanvas = observer(() => {
     </div>
   );
 });
+
+export default EntityCanvas;

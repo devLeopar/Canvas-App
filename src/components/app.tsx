@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import { observer } from "mobx-react";
-import { EntityCanvas } from "./entitycanvas";
-import { EntitiesContext } from "../index";
+import EntityCanvas from "./entitycanvas";
+import { EntitiesContext } from "../stores/EntitiesContext";
 
 const explanatoryTextStyle = {
   marginTop: "10px",
   fontSize: "14px",
 };
 
-export const App = observer(() => {
+const App = observer(() => {
   const entityStore = useContext(EntitiesContext);
 
   const onAddEntity = () => {
@@ -42,3 +42,5 @@ export const App = observer(() => {
     </div>
   );
 });
+
+export default App;
