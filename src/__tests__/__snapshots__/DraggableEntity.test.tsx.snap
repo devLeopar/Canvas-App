@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DraggableEntity /> renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    data-testid="draggable-entity"
+    style="position: absolute; display: flex; flex-direction: column; justify-content: center; align-items: center; width: 120px; min-width: 120px; min-height: 70px; background-color: rgb(247, 248, 250); border: 1px solid #cfd7df; border-radius: 4px; padding: 10px 20px; box-sizing: border-box; left: 100px; top: 100px; cursor: grab;"
+  >
+    <h2
+      style="margin: 0px 0px 10px 0px; font-size: 1.2em; border-bottom: 1px solid #cfd7df; padding-bottom: 5px;"
+    >
+      test4
+    </h2>
+    <ul
+      style="font-size: 1em; list-style-type: none; padding: 0px; margin: 0px;"
+    >
+      <li>
+        attr1
+      </li>
+      <li>
+        attr2
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
+`;
