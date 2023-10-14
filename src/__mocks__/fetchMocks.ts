@@ -28,8 +28,8 @@ const setupFetchMock = () => {
         ]);
       case "/static/coords.json":
         return mockJsonResponse([
-          { x: 0, y: 100 },
-          { x: 50, y: 150 },
+          { id: 1, x: 0, y: 100 },
+          { id: 2, x: 50, y: 150 },
         ]);
       default:
         throw new Error(`Unhandled request: ${url}`);
