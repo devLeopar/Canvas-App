@@ -1,85 +1,43 @@
-Assessment Studio Pro Front-end Developer
-================================
-(Mendix: see story: #824605)
+# Canvas App 🖥️🖌️
 
-# Introduction
+Welcome to the **Canvas App**! This application is designed to allow users to intuitively create entities on a canvas, drag them to rearrange, and double-click to add attributes. The visual nature of the tool makes modeling easy and intuitive.
 
-Dear Studio Pro Front-End Developer,
+## 🌟 Features
 
-This assessment is intended to give insights on your coding and logical thinking skills, so please treat this assignment the same as if you are working for Mendix.
+- **Intuitive Canvas**: Easily add entities onto a canvas.
+- **Draggable Entities**: Arrange your entities by simply dragging them around.
+- **Entity Attributes**: Double-click on any entity to add string attributes.
 
-This assessment consists of a backlog with three User Stories that need to be implemented. You will be asked to securely share your project after the assignment period is over present your results and findings via video call.
+## 🛠️ How to Use
 
-After your presentation we will have a discussion about your implementation to understand your reasoning, chosen methodologies and technology while working on the User Stories.
+1. **Add an Entity**: Simply click on the 'Add Entity' button and place it onto the canvas.
+2. **Move an Entity**: Click and drag any entity to your desired location.
+3. **Add Attributes**: Double-click on an entity and input the desired string attributes.
 
-Please treat this exercise as confidential. If you have any questions at all, do not hesitate to contact us.
+## 📚 Installation & Running
 
-_Before starting your assignment, please run `git init && git add . && git commit -am "initial commit"` so that we can track your changes from the base line_
+1. **Clone the repository**:
+   ```bash
+   git clone git@github.com:devLeopar/Canvas-App.git
+   ```
+2. **Navigate to the project directory and Install dependencies:**:
+   ```bash
+   cd domain-model-app
+   npm install
+   ```
+3. **Run the app:**:
+   ```bash
+   npm start
+   ```
+4. **Run tests**:
+   ```bash
+   npm test
+   ```
 
-Good luck and enjoy!
+## 🚀 Upcoming Features
 
-*Caution: Do not put this assignment on a publicly available website *
-
-
-# The Domain Model Editor
-
-## Background information
-
-Mendix is currently working on the first iteration of a domain model editor for web browsers. The domain model editor should make the visualisation and modelling of a Mendix application domain easier for business users.
-
-## Backlog
-
-### User Story 1
-
-In order to stop using hard coded entities
-For our Business Users
-We will load data from data services
-
-Acceptance Criteria:
-
-- Data needs to be read from the mock data services.
-
-### User Story 2
-
-In order to logically align, order and group different entities
-For our Business Users
-We need draggable entities on the canvas
-
-Acceptance Criteria:
-
-- Entities can be dragged around.
-
-### User Story 3
-
-In order to store data for an entity
-For our Business Users
-We need a simple and quick way to add attributes/properties to entities
-
-# Assignment
-
-Implement the three User Stories from the backlog.
-
-Provide the assignment as zip to our hiring team, or share private repository collaborator access with john.miles@mendix.com
-
-Present your results and findings to us in our next call together.
-We'll have a discussion to understand your reasoning, chosen methodologies and technology while working on the User Stories.
-
-# Running the application
-
-Install nodejs
-
-```
-npm install
-npm start
-open http://localhost:8080
-```
-
-Mock Data services:
-
-- http://localhost:8080/static/entities.json
-- http://localhost:8080/static/coords.json
-
-
-
-
+- **Persistent Entity State**: Ensure entities and their positions are retained between page refreshes.
+- **Entity Deletion**: In future updates, you'll have the capability to remove entities and their associated attributes with ease.
+- **Entity Collision Detection**: We're introducing a feature where, if enabled, entities won't overlap. This ensures a more organized arrangement.
+- **API Caching**: Boost performance by caching API responses for swifter data retrieval and less bandwidth consumption.
 
